@@ -16,7 +16,7 @@ run local on port 4000
 
 
 ## Notes
-* You should have mongodb atlas account and firebase account--to save files  
+* You should have mongodb atlas account and firebase account (firebase to files)
 * You have to create .env file and set your DB link , JWT secert and storage Bucket name
 
 ## Inspiration
