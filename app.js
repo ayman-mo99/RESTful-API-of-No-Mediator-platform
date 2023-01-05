@@ -23,24 +23,22 @@ admin.initializeApp({
 });
 
 // connect to mongodb
-mongoose.connect(
-  process.env.DB_connect,
-  {
+mongoose
+  .connect(process.env.DB_connect, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
-  },
-  () => {
-    console.log("Connect to database");
-  }
-);
+  })
+  .then(() => {
+    console.log("Connected to database");
+
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  });
 
 app.get("/", (req, res) => {
   res.send(" API with  34  endpoints  ");
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
 });
 
 // initialize routes
