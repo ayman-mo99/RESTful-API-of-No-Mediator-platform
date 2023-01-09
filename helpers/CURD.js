@@ -27,15 +27,19 @@ const updateBounse = async (newbounse, userid, companyid) => {
   try {
     var company = await Company.findOne({ _id: companyid });
     var user = await User.findOne({ _id: userid });
+
     newusreslist = company.users; // for compay
     newcompieslist = user.companies; // for user
 
+    // Change forEach to find
     company.users.forEach((element, index) => {
       if (element.id.toString() == userid.toString()) {
         company.users[index].bouns =
           parseInt(newbounse) + parseInt(company.users[index].bouns);
       }
     });
+
+    // Change forEach to find
     user.companies.forEach((element, index) => {
       if (element.id.toString() == companyid.toString()) {
         user.companies[index].bouns =
@@ -43,12 +47,13 @@ const updateBounse = async (newbounse, userid, companyid) => {
       }
     });
 
+    // we donot need to declare varible here
     const Newcompany = await Company.findByIdAndUpdate(
       { _id: companyid },
       company,
       { new: true }
     );
-
+    // we donot need to declare varible here
     const Newuser = await User.findByIdAndUpdate({ _id: userid }, user, {
       new: true,
     });

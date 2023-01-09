@@ -41,6 +41,7 @@ const myOrders = async (req, res) => {
 const editUser = async (req, res) => {
   try {
     if (req.file) {
+      // we have image in the request
       var temp = new Date().getTime().toString();
       const blob = bucket.file(temp + req.file.originalname);
       const blobStream = blob.createWriteStream();
@@ -68,6 +69,7 @@ const editUser = async (req, res) => {
 
       blobStream.end(req.file.buffer);
     } else {
+      // normal edit
       const NewUser = await User.findByIdAndUpdate(
         { _id: req.params.id },
         req.body,

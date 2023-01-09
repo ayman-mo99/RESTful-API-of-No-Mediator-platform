@@ -81,7 +81,9 @@ const CompanySchema = new Schema({
   ], // ***** not yet
 });
 
-// static methods
+//       *** static methods ***
+
+// login function
 CompanySchema.statics.login = async function (email, password) {
   //check for valid email and password
   const { error } = validation({ email, password });
@@ -110,6 +112,7 @@ CompanySchema.statics.login = async function (email, password) {
   }
 };
 
+// register function
 CompanySchema.statics.register = async function (req) {
   const {
     email,
